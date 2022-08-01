@@ -26,13 +26,17 @@ namespace GpsSkateShop
                 app.UseDeveloperExceptionPage();
             }
 
+            Catagolo catagolo = new Catagolo();
+            Relatorio relatorio = new Relatorio(catagolo);
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await relatorio.Imprimir(context);
+                    
                 });
             });
         }
